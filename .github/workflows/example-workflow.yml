@@ -13,6 +13,11 @@ on:
         required: true
         default: 1000
         type: number
+      subject:
+        description: "OpenSSL subject"
+        required: true
+        default: "/C=US/ST=IL/O=Blah/localityName=Champaign/commonName=Thoughtscript/organizationalUnitName=Thoughtscript/emailAddress=adam.intae.gerard@protonmail.com"
+        type: string
 
 jobs:
   example-js-action:
@@ -20,6 +25,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # ----------------------------------------------------------------------------- #
+      #                              GitHub JS Action                                 #
+      # ----------------------------------------------------------------------------- #
       - name: "Checkout GitHub Action Dependency"
         # https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsuses
         uses: actions/checkout@v4
@@ -35,6 +43,24 @@ jobs:
           # https://docs.github.com/en/enterprise-cloud@latest/actions/writing-workflows/workflow-syntax-for-github-actions#onworkflow_callinputs
           myinput: ${{ inputs.myinput }}"
       
+      # ----------------------------------------------------------------------------- #
+      #                         GitHub Composite Action                               #
+      # ----------------------------------------------------------------------------- #
+      - name: "Checkout GitHub Action Dependency"
+        uses: actions/checkout@v4
+        with:
+          repository: thoughtscript/example-composite-action
+          token: ${{ secrets.MY_TOKEN }}
+          path: ./.github/actions/thoughtscript/example-composite-action
+    
+      - name: "example-composite-action"
+        uses: ./.github/actions/thoughtscript/example-composite-action/
+        with:
+          subject: ${{ inputs.subject }}"
+
+      # ----------------------------------------------------------------------------- #
+      #                          GitHub Container Action                              #
+      # ----------------------------------------------------------------------------- #
       - name: "Checkout GitHub Action Dependency"
         uses: actions/checkout@v4
         with:

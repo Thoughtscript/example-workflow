@@ -14,3 +14,5 @@ A very simple GitHub Workflow example.
 ## Actions
 
 * https://github.com/Thoughtscript/example-js-action
+* https://github.com/Thoughtscript/example-composite-action
+* https://github.com/Thoughtscript/example-container-action
