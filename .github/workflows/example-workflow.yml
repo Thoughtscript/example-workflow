@@ -24,7 +24,7 @@ jobs:
           path: ./.github/actions/thoughtscript/example-js-action
 
       - name: "example-js-action"
-        # Execute and run the GitHub JS Action Function by specifying the YAML
-        uses: ./.github/actions/thoughtscript/example-js-action/example-js-action
+        # Execute and run the GitHub JS Action Function - will look for action.yml
+        uses: ./.github/actions/thoughtscript/example-js-action/
         with:
           myinput: "I am a string"
