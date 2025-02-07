@@ -1,0 +1,30 @@
+name: Example Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      myinput:
+        description: "Example input arg"
+        required: true
+        default: "I am a string"
+        type: string
+
+jobs:
+  example-js-action:
+    name: "Example-JS-Action Job"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout GitHub Action Dependency"
+        # https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsuses
+        uses: actions/checkout@v4
+        with:
+          repository: thoughtscript/example-js-action
+          token: ${{ secrets.MY_TOKEN }}
+          path: ./.github/actions/thoughtscript/example-js-action
+
+      - name: "example-js-action"
+        # Execute and run the GitHub JS Action Function by specifying the YAML
+        uses: ./.github/actions/thoughtscript/example-js-action/example-js-action
+        with:
+          myinput: ${{ inputs.myinput }}
