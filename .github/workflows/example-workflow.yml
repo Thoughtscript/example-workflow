@@ -27,4 +27,4 @@ jobs:
         # Execute and run the GitHub JS Action Function by specifying the YAML
         uses: ./.github/actions/thoughtscript/example-js-action/example-js-action
         with:
-          myinput: ${{ inputs.myinput }}
+          myinput: "I am a string"
