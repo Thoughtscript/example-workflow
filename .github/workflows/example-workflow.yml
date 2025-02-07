@@ -27,4 +27,5 @@ jobs:
         # Execute and run the GitHub JS Action Function - will look for action.yml
         uses: ./.github/actions/thoughtscript/example-js-action/
         with:
-          myinput: "I am a string"
+          # https://docs.github.com/en/enterprise-cloud@latest/actions/writing-workflows/workflow-syntax-for-github-actions#onworkflow_callinputs
+          myinput: ${{ inputs.myinput }}"
